@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using BuberDinner.Api.Common.Http;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -91,7 +92,7 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
             problemDetails.Extensions["traceId"] = traceId;
         }
         
-        var errors = httpContext?.Items["errors"] as List<Error>;
+        var errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
 
         if (errors is not null)
         {
